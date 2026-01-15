@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新一线城市15万以内燃油代步车购买攻略</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f7f7fb',
+                            100: '#eef0ff',
+                            200: '#dfe3ff',
+                            300: '#c6c9ff',
+                            400: '#a5a8ff',
+                            500: '#7f82ff',
+                            600: '#5a5ee6',
+                            700: '#4446b5',
+                            800: '#343585',
+                            900: '#26275d',
+                        },
+                        ink: {
+                            50: '#f6f7f9',
+                            100: '#eceef2',
+                            200: '#d5dae3',
+                            300: '#b0b9ca',
+                            400: '#8493ac',
+                            500: '#657592',
+                            600: '#505e79',
+                            700: '#414c62',
+                            800: '#384152',
+                            900: '#1e2433',
+                            950: '#0f1218',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'fade-in': 'fadeIn 0.7s ease-out forwards',
+                        'shimmer': 'shimmer 3s ease-in-out infinite',
+                        'float': 'float 7s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%, 100%': { backgroundPosition: '200% center' },
+                            '50%': { backgroundPosition: '-200% center' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-18px) rotate(-1deg)' },
+                        },
+                        glowPulse: {
+                            '0%, 100%': { opacity: '0.35' },
+                            '50%': { opacity: '0.85' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Typography tokens - 字号保持不变 */
+            --heading-1: clamp(1.75rem, 2.2vw, 2.25rem);
+            --heading-2: clamp(1.35rem, 1.6vw, 1.65rem);
+            --heading-3: clamp(1.05rem, 1.1vw, 1.15rem);
+            --body-size: 0.875rem;
+            --styled-body-size: 0.875rem;
+            --styled-subtitle-size: 0.95rem;
+            --nav-height: 72px;
+
+            /* New premium palette: 紫靛 + 冰蓝 + 珍珠灰 */
+            --accent-primary: #5a5ee6;   /* indigo */
+            --accent-secondary: #22d3ee; /* cyan */
+            --accent-soft: #a5a8ff;      /* lilac */
+            --deep-ink: #0f1218;
+            --soft-ink: #1e2433;
+            --page-bg: radial-gradient(1200px 800px at 15% 10%, rgba(90, 94, 230, 0.18) 0%, transparent 60%),
+                       radial-gradient(900px 700px at 85% 15%, rgba(34, 211, 238, 0.12) 0%, transparent 55%),
+                       radial-gradient(900px 700px at 70% 80%, rgba(165, 168, 255, 0.14) 0%, transparent 60%),
+                       linear-gradient(165deg, #f7f7fb 0%, #f1f3ff 55%, #eef0ff 100%);
+
+            /* Card tokens */
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-border: rgba(90, 94, 230, 0.12);
+            --card-shadow:
+                0 4px 10px -2px rgba(15, 18, 24, 0.06),
+                0 14px 34px -12px rgba(15, 18, 24, 0.10),
+                0 30px 70px -22px rgba(15, 18, 24, 0.12);
+        }
+
+        body {
+            background: var(--page-bg);
+            background-attachment: fixed;
+            color: #414c62;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            position: relative;
+        }
+
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--soft-ink);
+            letter-spacing: -0.025em;
+            position: relative;
+        }
+
+        /* 锚点跳转偏移：确保跳转后标题不被导航栏遮挡 */
+        /* 使用较大的偏移量，为 section-card 容器提供足够的视觉缓冲 */
+        [id] {
+            scroll-margin-top: calc(var(--nav-height) + 24px);
+        }
+
+        h1 { font-size: var(--heading-1); line-height: 1.2; }
+        h2 { font-size: var(--heading-2); line-height: 1.3; }
+        h3 { font-size: var(--heading-3); line-height: 1.4; }
+
+        .prose-p {
+            margin-bottom: 1.15em;
+            line-height: 1.7;
+            color: #505e79;
+            font-size: var(--body-size);
+        }
+
+        .prose-li {
+            margin-bottom: 0.5em;
+            line-height: 1.7;
+            font-size: var(--body-size);
+        }
+
+        .prose-h3 {
+            font-size: var(--heading-3);
+            line-height: 1.4;
+        }
+
+        /* Layout helpers */
+        .content-shell {
+            padding-top: calc(var(--nav-height) + 0.75rem);
+        }
+
+        /* Table Caption - 表格标题居中显示，与表格一体化设计 */
+        .table-caption {
+            /* 布局与位置 */
+            margin-top: 2.5rem; /* 增加与上方内容的间距 */
+            margin-bottom: 0 !important; /* 紧贴表格 */
+            padding: 1rem 1.25rem;
+            width: 100% !important;
+            box-sizing: border-box;
+            
+            /* Flexbox 强制居中 */
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            
+            /* 视觉风格 - 模拟卡片头部，与表格融合 */
+            background: linear-gradient(180deg, rgba(250, 251, 255, 0.95) 0%, rgba(246, 247, 255, 0.95) 100%);
+            border: 1px solid rgba(90, 94, 230, 0.14);
+            border-bottom: 1px dashed rgba(90, 94, 230, 0.15); /* 视觉分割线 */
+            border-radius: 1.25rem 1.25rem 0 0; /* 仅顶部圆角 */
+            box-shadow: 
+                0 4px 6px -1px rgba(15, 18, 24, 0.01), 
+                0 2px 4px -1px rgba(15, 18, 24, 0.01);
+            
+            /* 字体 */
+            color: #0f172a; /* 改为黑色 (slate-900) */
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            text-align: center !important;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .table-caption p {
+            margin: 0 !important;
+            text-align: center !important;
+            display: inline-block !important;
+            width: auto !important;
+            color: #0f172a; /* 确保 p 标签也是黑色 */
+        }
+        
+        .table-caption em {
+            font-style: normal;
+            color: inherit; /* 继承父元素的黑色，不再使用紫色高亮 */
+        }
+
+        /* Mobile: 表格标题响应式 */
+        @media (max-width: 768px) {
+            .table-caption {
+                margin-top: 1.5rem;
+                padding: 0.875rem 1rem; /* 减小内边距 */
+                font-size: 0.9rem;
+                border-radius: 0.875rem 0.875rem 0 0; /* 适配移动端圆角尺寸 */
+            }
+            
+            /* 移动端：紧跟标题的表格 - 确保圆角匹配 */
+            .table-caption + .clean-table-container {
+                margin-top: 0 !important;
+                border-radius: 0 0 0.875rem 0.875rem !important; /* 仅底部圆角 */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .table-caption {
+                margin-top: 1.25rem;
+                padding: 0.75rem 0.875rem;
+                font-size: 0.85rem;
+                border-radius: 0.75rem 0.75rem 0 0;
+            }
+            
+            .table-caption + .clean-table-container {
+                margin-top: 0 !important;
+                border-radius: 0 0 0.75rem 0.75rem !important;
+            }
+        }
+
+        /* Premium Table Styles (same class names, new vibe) */
+        .clean-table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* 改善iOS滚动体验 */
+            margin: 1.75rem 0;
+            border-radius: 1.25rem;
+            box-shadow:
+                0 6px 10px -4px rgba(15, 18, 24, 0.05),
+                0 18px 34px -16px rgba(15, 18, 24, 0.10),
+                0 1px 0 0 rgba(255, 255, 255, 0.85) inset;
+            border: 1px solid rgba(90, 94, 230, 0.14);
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,247,255,0.94) 100%);
+            backdrop-filter: blur(14px);
+            /* 确保容器不超出父元素 */
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 紧跟标题的表格容器调整 - 一体化连接 */
+        .table-caption + .clean-table-container {
+            margin-top: 0 !important;
+            border-top: none !important; /* 移除上边框，由标题提供 */
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+            /* 调整阴影使其看起来是一个整体 */
+            box-shadow: 
+                0 4px 10px -2px rgba(15, 18, 24, 0.06),
+                0 10px 20px -8px rgba(15, 18, 24, 0.08);
+        }
+
+        table {
+            width: 100%;
+            min-width: 100%; /* 确保表格至少撑满容器 */
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: var(--body-size);
+            table-layout: auto; /* 允许列宽自适应内容 */
+        }
+
+        th {
+            background: linear-gradient(180deg, rgba(238,240,255,0.9) 0%, rgba(247,247,251,0.95) 100%);
+            font-weight: 600;
+            text-align: left;
+            color: #384152;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(90, 94, 230, 0.14);
+            /* 移除 white-space: nowrap，允许表头换行 */
+            white-space: normal;
+            word-wrap: break-word;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            min-width: 80px; /* 设置最小列宽，避免列太窄 */
+        }
+
+        td {
+            padding: 1.15rem 1.5rem;
+            border-bottom: 1px solid rgba(90, 94, 230, 0.08);
+            color: #505e79;
+            word-wrap: break-word;
+            /* 允许长单词换行 */
+            overflow-wrap: break-word;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tbody tr { transition: all 0.2s ease; }
+        tbody tr:hover {
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.06) 0%, transparent 100%);
+        }
+
+        /* ========== Mobile Table Responsive Styles ========== */
+        @media (max-width: 768px) {
+            .clean-table-container {
+                margin: 1.25rem 0;
+                border-radius: 0.875rem;
+                /* 移动端使用更小的圆角和阴影 */
+                box-shadow:
+                    0 4px 8px -2px rgba(15, 18, 24, 0.06),
+                    0 8px 16px -8px rgba(15, 18, 24, 0.08);
+            }
+            
+            /* 移动端：紧跟标题的表格 */
+            .table-caption + .clean-table-container {
+                margin-top: 0.25rem;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th {
+                padding: 0.875rem 1rem;
+                font-size: 0.65rem;
+                min-width: 60px;
+                letter-spacing: 0.05em;
+            }
+
+            td {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clean-table-container {
+                margin: 1rem 0;
+                border-radius: 0.75rem;
+            }
+            
+            /* 小屏幕：紧跟标题的表格 */
+            .table-caption + .clean-table-container {
+                margin-top: 0.2rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th {
+                padding: 0.625rem 0.75rem;
+                font-size: 0.6rem;
+                min-width: 50px;
+            }
+
+            td {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+
+        /* Premium Chart Container */
+        .chart-wrapper {
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,247,255,0.94) 100%);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow:
+                0 6px 12px -6px rgba(15, 18, 24, 0.06),
+                0 22px 48px -24px rgba(15, 18, 24, 0.12);
+            border: 1px solid rgba(90, 94, 230, 0.14);
+            margin: 3rem 0;
+            backdrop-filter: blur(14px);
+            position: relative;
+        }
+
+        .chart-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 2rem;
+            right: 2rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent-secondary) 50%, transparent 100%);
+            opacity: 0.35;
+        }
+
+        /* ========== Mobile Chart Responsive ========== */
+        @media (max-width: 768px) {
+            .chart-wrapper {
+                padding: 1.25rem;
+                margin: 2rem 0;
+                border-radius: 1rem;
+            }
+            .chart-wrapper::before {
+                left: 1rem;
+                right: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .chart-wrapper {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 0.875rem;
+            }
+        }
+
+        /* Mermaid Diagram Container */
+        .mermaid-wrapper {
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,247,255,0.94) 100%);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow:
+                0 6px 12px -6px rgba(15, 18, 24, 0.06),
+                0 22px 48px -24px rgba(15, 18, 24, 0.12);
+            border: 1px solid rgba(90, 94, 230, 0.14);
+            margin: 3rem 0;
+            backdrop-filter: blur(14px);
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .mermaid-wrapper pre.mermaid {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        /* Mobile Mermaid Responsive */
+        @media (max-width: 768px) {
+            .mermaid-wrapper {
+                padding: 1.25rem;
+                margin: 2rem 0;
+                border-radius: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .mermaid-wrapper {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                border-radius: 0.875rem;
+            }
+        }
+
+        /* Section Card */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            border-radius: 1.25rem;
+            padding: clamp(1.75rem, 2vw, 2.5rem);
+            margin: 1.5rem 0;
+            position: relative;
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+        }
+
+        .section-card:first-child {
+            margin-top: 0;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
+            border-radius: 1.25rem 1.25rem 0 0;
+            opacity: 0.8;
+        }
+
+        .section-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px 250px at 10% 0%, rgba(90, 94, 230, 0.10) 0%, transparent 60%),
+                        radial-gradient(520px 220px at 90% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .section-card > * { position: relative; z-index: 1; }
+
+        .section-card:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                0 10px 18px -6px rgba(15, 18, 24, 0.08),
+                0 22px 46px -18px rgba(15, 18, 24, 0.12),
+                0 46px 90px -36px rgba(15, 18, 24, 0.12);
+        }
+
+        /* 锚点跳转高亮效果：当用户点击导航跳转到某个章节时 */
+        .section-card:target {
+            animation: targetHighlight 1.5s ease-out;
+        }
+
+        .section-card:target::before {
+            animation: targetBorderPulse 1.5s ease-out;
+        }
+
+        @keyframes targetHighlight {
+            0% {
+                transform: scale(1);
+                box-shadow:
+                    0 0 0 4px rgba(90, 94, 230, 0.4),
+                    0 0 30px rgba(90, 94, 230, 0.3),
+                    0 0 60px rgba(34, 211, 238, 0.2),
+                    var(--card-shadow);
+            }
+            30% {
+                transform: scale(1.005);
+                box-shadow:
+                    0 0 0 6px rgba(90, 94, 230, 0.5),
+                    0 0 40px rgba(90, 94, 230, 0.35),
+                    0 0 80px rgba(34, 211, 238, 0.25),
+                    var(--card-shadow);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: var(--card-shadow);
+            }
+        }
+
+        @keyframes targetBorderPulse {
+            0% {
+                height: 5px;
+                opacity: 1;
+                box-shadow: 0 0 20px rgba(90, 94, 230, 0.6);
+            }
+            30% {
+                height: 6px;
+                opacity: 1;
+                box-shadow: 0 0 30px rgba(34, 211, 238, 0.7);
+            }
+            100% {
+                height: 3px;
+                opacity: 0.8;
+                box-shadow: none;
+            }
+        }
+
+        .section-card .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--soft-ink);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .section-card .section-heading .section-heading-icon {
+            width: 36px;
+            height: 36px;
+            color: var(--accent-primary);
+            opacity: 0.95;
+        }
+        .section-card .section-heading .section-heading-text {
+            font-size: var(--heading-2);
+            line-height: 1.3;
+            background: linear-gradient(135deg, #0f1218 0%, var(--accent-primary) 55%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-card .section-body { padding-top: 0.5rem; }
+
+        /* Scrollbar */
+        .toc-scroll::-webkit-scrollbar { width: 4px; }
+        .toc-scroll::-webkit-scrollbar-track { background: transparent; }
+        .toc-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            border-radius: 20px;
+        }
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* ========== Premium Semantic Styles (ONLY: summary) ========== */
+
+        /* SUMMARY */
+        .style-summary {
+            background: linear-gradient(165deg, rgba(90,94,230,0.10) 0%, rgba(34,211,238,0.08) 45%, rgba(255,255,255,0.72) 100%);
+            border: 1px solid rgba(90, 94, 230, 0.18);
+            padding: 1.5rem 1.75rem;
+            margin: 1.75rem 0;
+            border-radius: 1rem;
+            color: #2b2f3a;
+            font-size: var(--body-size);
+            font-weight: 500;
+            line-height: 1.75;
+            box-shadow:
+                0 6px 22px -10px rgba(90, 94, 230, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.75);
+            position: relative;
+            overflow: hidden;
+        }
+        .style-summary::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
+        }
+        .style-summary::after {
+            content: "✓ 结论";
+            position: absolute;
+            top: 1rem; right: 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 0.35rem 0.85rem;
+            border-radius: 2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 2px 10px rgba(90, 94, 230, 0.18);
+            border: 1px solid rgba(90, 94, 230, 0.12);
+        }
+        .style-summary strong { color: #343585; font-weight: 700; }
+
+        /* ========== Mobile Summary Responsive ========== */
+        @media (max-width: 768px) {
+            .style-summary {
+                padding: 1.25rem 1rem;
+                padding-top: 2.5rem; /* 为标签留出空间 */
+                margin: 1.25rem 0;
+            }
+            .style-summary::after {
+                top: 0.65rem;
+                right: 0.75rem;
+                font-size: 0.6rem;
+                padding: 0.25rem 0.6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .style-summary {
+                padding: 1rem 0.875rem;
+                padding-top: 2.25rem;
+                border-radius: 0.75rem;
+            }
+            .style-summary::after {
+                font-size: 0.55rem;
+                padding: 0.2rem 0.5rem;
+            }
+        }
+        .style-summary .styled-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px dashed rgba(90, 94, 230, 0.18);
+        }
+        .style-summary .styled-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .style-summary .styled-subtitle {
+            font-size: var(--styled-subtitle-size);
+            font-weight: 700;
+            color: #343585;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 2px solid rgba(34, 211, 238, 0.25);
+            display: block;
+            letter-spacing: -0.01em;
+        }
+        .style-summary .styled-body {
+            font-size: var(--styled-body-size);
+            line-height: 1.7;
+            color: #2b2f3a;
+            font-weight: 500;
+        }
+
+
+        /* ========== Layout Styles (Grid/Steps) ========== */
+        .layout-grid { margin: 2rem 0; }
+
+        .layout-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,247,255,0.94) 100%);
+            border: 1px solid rgba(90, 94, 230, 0.14);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow:
+                0 2px 10px -4px rgba(15, 18, 24, 0.06),
+                0 10px 24px -12px rgba(15, 18, 24, 0.10);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .layout-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 55%, var(--accent-primary) 100%);
+            opacity: 0.55;
+            transition: opacity 0.3s ease;
+        }
+        .layout-card:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                0 10px 20px -10px rgba(15, 18, 24, 0.10),
+                0 18px 44px -20px rgba(15, 18, 24, 0.14);
+        }
+        .layout-card:hover::before { opacity: 1; }
+        .layout-card .prose-p:last-child { margin-bottom: 0; }
+        .layout-card h3, .layout-card .prose-h3 { margin-top: 0 !important; padding-top: 0 !important; }
+
+        /* ========== Mobile Layout Card Responsive ========== */
+        @media (max-width: 768px) {
+            .layout-grid { margin: 1.5rem 0; }
+            .layout-card {
+                padding: 1.125rem;
+                border-radius: 0.875rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .layout-grid { margin: 1rem 0; }
+            .layout-card {
+                padding: 1rem;
+                border-radius: 0.75rem;
+            }
+        }
+
+        /* Steps Layout */
+        .layout-steps { margin: 2rem 0; position: relative; }
+        .layout-step { display: flex; gap: 1.25rem; position: relative; padding-bottom: 1.5rem; }
+        .layout-step:last-child { padding-bottom: 0; }
+        .layout-step:last-child .step-line { display: none; }
+        .step-indicator { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+        .step-number {
+            width: 2.5rem; height: 2.5rem;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50%;
+            box-shadow:
+                0 6px 16px -4px rgba(90, 94, 230, 0.35),
+                0 2px 6px rgba(34, 211, 238, 0.18);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .step-line {
+            width: 2px;
+            flex-grow: 1;
+            min-height: 2rem;
+            background: linear-gradient(180deg, rgba(34, 211, 238, 0.65) 0%, rgba(90, 94, 230, 0.12) 100%);
+            margin-top: 0.5rem;
+        }
+        .step-content {
+            flex: 1;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(246,247,255,0.94) 100%);
+            border: 1px solid rgba(90, 94, 230, 0.12);
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            box-shadow:
+                0 2px 10px -6px rgba(15, 18, 24, 0.06),
+                0 10px 20px -14px rgba(15, 18, 24, 0.10);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .step-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0.85rem;
+            width: 0; height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid rgba(90, 94, 230, 0.12);
+        }
+        .step-content::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0.9rem;
+            width: 0; height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 6px solid rgba(255, 255, 255, 0.98);
+        }
+        .layout-step:hover .step-content {
+            transform: translateX(4px);
+            box-shadow:
+                0 6px 14px -10px rgba(15, 18, 24, 0.08),
+                0 16px 34px -18px rgba(15, 18, 24, 0.12);
+        }
+        .layout-step:hover .step-number {
+            transform: scale(1.08);
+            box-shadow:
+                0 10px 24px -10px rgba(90, 94, 230, 0.45),
+                0 4px 10px rgba(34, 211, 238, 0.22);
+        }
+        .step-content .prose-p:last-child { margin-bottom: 0; }
+        .step-content h3, .step-content .prose-h3 { margin-top: 0 !important; padding-top: 0 !important; }
+
+        @media (max-width: 768px) {
+            .layout-step { gap: 1rem; }
+            .step-number { width: 2rem; height: 2rem; font-size: 0.875rem; }
+            .step-content { padding: 1rem 1.25rem; }
+            .step-content::before {
+                left: -6px; top: 0.65rem;
+                border-top-width: 6px;
+                border-bottom-width: 6px;
+                border-right-width: 6px;
+            }
+            .step-content::after {
+                left: -4px; top: 0.7rem;
+                border-top-width: 5px;
+                border-bottom-width: 5px;
+                border-right-width: 5px;
+            }
+        }
+
+        /* Premium glass panel */
+        .glass-panel {
+            background: rgba(246, 247, 255, 0.72);
+            backdrop-filter: blur(22px) saturate(170%);
+            -webkit-backdrop-filter: blur(22px) saturate(170%);
+            border: 1px solid rgba(90, 94, 230, 0.10);
+        }
+
+        /* Decorative */
+        .ornament-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(34, 211, 238, 0.65) 20%, rgba(90, 94, 230, 0.55) 80%, transparent 100%);
+            opacity: 0.45;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(
+                120deg,
+                #0f1218 0%,
+                var(--accent-primary) 25%,
+                var(--accent-secondary) 50%,
+                var(--accent-primary) 75%,
+                #0f1218 100%
+            );
+            background-size: 420% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 10s linear infinite;
+        }
+
+        /* ========== Mobile Header Decoration Responsive ========== */
+        @media (max-width: 640px) {
+            .header-decoration {
+                gap: 0.5rem !important;
+            }
+            .header-decoration .header-line-short {
+                width: 1.5rem !important;
+            }
+            .header-decoration .header-line-long {
+                width: 3rem !important;
+            }
+            .header-decoration .header-dot {
+                width: 0.375rem !important;
+                height: 0.375rem !important;
+            }
+        }
+
+        /* ========== Footnote Sup (inline citation) Styles ========== */
+        .footnote-sup {
+            color: #5a5ee6;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.7em;
+            transition: color 0.2s ease;
+        }
+        .footnote-sup:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* ========== References Card Styles ========== */
+        .references-card {
+            margin-top: 2rem;
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .reference-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.625rem 1rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(250,251,255,0.88) 100%);
+            border: 1px solid rgba(90, 94, 230, 0.10);
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reference-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(90, 94, 230, 0.4) 0%, rgba(34, 211, 238, 0.35) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .reference-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px -4px rgba(90, 94, 230, 0.10);
+            border-color: rgba(90, 94, 230, 0.14);
+            background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,251,255,0.92) 100%);
+        }
+
+        .reference-item:hover::before {
+            opacity: 1;
+        }
+
+        .reference-number {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(90, 94, 230, 0.15) 0%, rgba(34, 211, 238, 0.12) 100%);
+            color: #5a5ee6;
+            font-size: 0.65rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            border: 1px solid rgba(90, 94, 230, 0.18);
+        }
+
+        .reference-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .reference-title {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #475569;
+            margin-bottom: 0.125rem;
+        }
+
+        .reference-link {
+            color: #5a5ee6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .reference-link:hover {
+            color: var(--accent-secondary);
+            text-decoration: underline;
+        }
+
+        .reference-text {
+            color: #475569;
+        }
+
+        .reference-source {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .reference-item {
+                padding: 0.5rem 0.875rem;
+            }
+
+            .reference-number {
+                width: 1.375rem;
+                height: 1.375rem;
+                font-size: 0.6rem;
+            }
+
+            .reference-title {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root { --nav-height: 64px; }
+            
+            /* 返回顶部按钮移动端调整 */
+            .back-to-top-btn {
+                bottom: 1.25rem !important;
+                right: 1.25rem !important;
+                padding: 0.75rem !important;
+            }
+            .back-to-top-btn svg {
+                width: 1rem !important;
+                height: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Section Card 在小屏上减少 padding */
+            .section-card {
+                padding: 1.25rem !important;
+                margin: 1rem 0;
+                border-radius: 1rem;
+            }
+            
+            /* 返回顶部按钮进一步调整 */
+            .back-to-top-btn {
+                bottom: 1rem !important;
+                right: 1rem !important;
+                padding: 0.625rem !important;
+                border-radius: 0.875rem !important;
+            }
+        }
+
+        /* ========== Mobile Viewport Stability ========== */
+        /* 使用 dvh (dynamic viewport height) 替代 vh，适应移动端地址栏动态变化 */
+        @supports (min-height: 100dvh) {
+            .min-h-screen-stable {
+                min-height: 100dvh;
+            }
+        }
+        @supports not (min-height: 100dvh) {
+            .min-h-screen-stable {
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* 防止滚动时布局跳动 */
+        html {
+            /* 禁用原生的 scroll-behavior，改用 JS 控制 */
+            scroll-behavior: auto !important;
+            /* 防止内容溢出屏幕宽度 */
+            overflow-x: hidden;
+        }
+
+        /* 平滑过渡效果，减轻地址栏收起时的视觉跳动 */
+        body {
+            transition: min-height 0.1s ease-out;
+            /* 防止内容溢出屏幕宽度 */
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* ========== 全局溢出防护 ========== */
+        /* 确保所有块级元素不会超出父容器 */
+        .section-card,
+        .layout-card,
+        .chart-wrapper,
+        .style-summary,
+        article,
+        main {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 确保图片和媒体元素自适应 */
+        img, video, iframe, embed, object {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 防止代码块和表格溢出 */
+        pre, code {
+            max-width: 100%;
+            overflow-x: auto;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen min-h-screen-stable selection:bg-indigo-100 selection:text-indigo-900">
+
+    <!-- Premium Top Navigation (same layout, different palette) -->
+    <div class="fixed top-0 left-0 right-0 z-50">
+        <div class="h-1 bg-gradient-to-r from-indigo-600 via-cyan-400 to-indigo-600 w-full"></div>
+        <nav class="glass-panel border-b border-indigo-200/30 shadow-lg shadow-indigo-900/5 px-6 py-3.5">
+            <div class="max-w-[1800px] mx-auto flex items-center justify-between gap-8">
+                <div class="flex items-center gap-3 shrink-0">
+                    <div class="w-9 h-9 bg-gradient-to-br from-indigo-600 to-cyan-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-600/25 ring-1 ring-indigo-500/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div class="hidden sm:flex flex-col">
+                        <span class="font-bold text-slate-800 tracking-tight text-sm">研究报告</span>
+                        <span class="text-[10px] text-indigo-700/60 font-medium tracking-widest uppercase">Research Report</span>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-x-auto no-scrollbar scroll-smooth">
+                    <ul class="flex items-center gap-2 py-1">
+                        <li class="shrink-0"><a href="#b_000001" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">需求分析与市场定位</a></li>
+<li class="shrink-0"><a href="#b_000006" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">主流车型概览</a></li>
+<li class="shrink-0"><a href="#b_000015" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">燃油经济性对比</a></li>
+<li class="shrink-0"><a href="#b_000025" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">可靠性与保养成本评估</a></li>
+<li class="shrink-0"><a href="#b_000035" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">配置与安全性能分析</a></li>
+<li class="shrink-0"><a href="#b_000045" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">价格与优惠策略</a></li>
+<li class="shrink-0"><a href="#b_000055" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 transition-all whitespace-nowrap">综合购买建议</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Elegant Background Elements (same placement, different look) -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-16 left-1/4 w-[520px] h-[520px] bg-gradient-radial from-indigo-200/20 via-indigo-100/6 to-transparent rounded-full filter blur-3xl animate-float"></div>
+        <div class="absolute top-1/3 right-1/4 w-[420px] h-[420px] bg-gradient-radial from-cyan-200/16 via-cyan-100/6 to-transparent rounded-full filter blur-3xl animate-float" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-[470px] h-[470px] bg-gradient-radial from-violet-200/14 via-violet-100/6 to-transparent rounded-full filter blur-3xl animate-float" style="animation-delay: 4s"></div>
+
+        <div class="absolute top-32 left-8 w-32 h-32 border-l border-t border-indigo-300/25 rounded-tl-3xl"></div>
+        <div class="absolute bottom-32 right-8 w-32 h-32 border-r border-b border-cyan-300/20 rounded-br-3xl"></div>
+    </div>
+
+    <div class="flex flex-1 w-full max-w-[1800px] mx-auto pb-28 px-6 md:px-12 flex-col content-shell">
+        <main class="flex-1 min-w-0 w-full">
+            <article class="max-w-7xl mx-auto w-full">
+                <!-- Premium Header -->
+                <header class="mb-4 relative text-center animate-fade-in-up">
+                    <div class="header-decoration flex items-center justify-center gap-4 mb-4">
+                        <div class="header-line-short w-12 h-px bg-gradient-to-r from-transparent to-indigo-400/55"></div>
+                        <div class="header-dot w-2 h-2 rounded-full bg-cyan-400/70"></div>
+                        <div class="header-line-long w-24 h-px bg-indigo-400/45"></div>
+                        <div class="header-dot w-2 h-2 rounded-full bg-cyan-400/70"></div>
+                        <div class="header-line-short w-12 h-px bg-gradient-to-l from-transparent to-indigo-400/55"></div>
+                    </div>
+
+                    <h1 class="mx-auto max-w-4xl text-3xl md:text-4xl lg:text-5xl font-bold mb-3 tracking-tight leading-tight font-serif lining-nums text-balance break-words">
+                        <span class="shimmer-text">
+                            新一线城市15万以内燃油代步车购买攻略
+                        </span>
+                    </h1>
+
+                    <div class="ornament-line max-w-md mx-auto"></div>
+                </header>
+
+                <div class="prose prose-slate prose-base max-w-none prose-headings:font-bold prose-a:text-indigo-700 hover:prose-a:text-indigo-600 animate-fade-in-up stagger-2" style="opacity: 0;">
+                    <div class="section-card" id="b_000001">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">需求分析与市场定位</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>新一线城市用户的汽车消费需求呈现出鲜明的地域特征和时代特点。根据2026年最新市场调研数据，这类用户群体通常具有以下核心需求：每日通勤距离集中在30公里以内，主要覆盖城市道路和快速路；每月有1-2次省内长途出行需求，距离多在200-500公里之间；预算严格控制在15万以内，对燃油经济性高度敏感；同时期望车辆具备基本的安全配置和舒适性功能。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从市场定位来看，15万价位的燃油紧凑型车在新一线城市正处于黄金区间。这一价位既能满足用户对品牌和品质的基本要求，又不会造成过大的经济压力。根据汽车之家2026年车型数据，该价位段集中了超过20款主流燃油车型，涵盖轿车和SUV两大类别，形成了充分竞争的市场格局<sup><a href="#fn-1" class="footnote-sup">1</a></sup><sup><a href="#fn-2" class="footnote-sup">2</a></sup>。值得注意的是，尽管新能源车渗透率不断提升，但燃油车在15万以内市场仍保持约65%的份额，特别是在三四线城市及新一线城市郊区，燃油车凭借其成熟的技术体系和完善的配套服务，仍然是多数家庭的首选<sup><a href="#fn-3" class="footnote-sup">3</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从使用场景分析，新一线城市用户面临的道路条件复杂多变。日常通勤中，早晚高峰拥堵路段占比约40%，平均车速低于25km/h；周末和节假日则可能面临高速公路长途驾驶。这种双重使用场景对车辆的动力系统、燃油经济性和可靠性提出了更高要求。数据显示，在15万以内预算下，燃油紧凑型车的平均WLTC油耗集中在5.2-7.5L/100km区间，按当前92号汽油价格计算，年行驶1.5万公里的燃油成本约为6000-9000元<sup><a href="#fn-4" class="footnote-sup">4</a></sup><sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-6" class="footnote-sup">6</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>针对新一线城市用户的特殊需求，我们将重点评估以下几个方面：燃油经济性对通勤成本的影响、可靠性对日常使用的重要性、安全配置对长途驾驶的保障作用，以及价格策略对预算控制的实际意义。通过量化分析和横向对比，为用户提供科学、实用的购车决策依据。</p>
+</div>
+</div>
+<div class="section-card" id="b_000006">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">主流车型概览</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>15万以内燃油紧凑型车市场呈现出多元化竞争格局，主要分为轿车和SUV两大类别。根据2026年最新市场数据，轿车类占据约60%的市场份额，SUV类约占40%，这一比例在新一线城市尤为明显<sup><a href="#fn-1" class="footnote-sup">1</a></sup><sup><a href="#fn-2" class="footnote-sup">2</a></sup>。轿车凭借更低的价格和更优的燃油经济性，成为通勤代步的主流选择；而SUV则凭借更好的通过性和空间表现，吸引了部分有家庭出行需求的用户。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：15万以内主流燃油紧凑型车市场分布</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>车型类别</th>
+<th>代表车型</th>
+<th>价格区间(万元)</th>
+<th>市场份额</th>
+<th>主要优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>紧凑型轿车</td>
+<td>日产轩逸、大众朗逸、丰田卡罗拉</td>
+<td>7.99-15.58</td>
+<td>60%</td>
+<td>燃油经济性好、价格亲民</td>
+</tr>
+<tr>
+<td>紧凑型SUV</td>
+<td>起亚智跑、长安UNI-Z、哈弗赤兔</td>
+<td>6.88-15.99</td>
+<td>40%</td>
+<td>空间大、通过性好</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>在轿车细分市场，日系和德系品牌占据主导地位。日产轩逸以7.99-17.49万的指导价和5.2-6.1L/100km的WLTC油耗成为销量冠军<sup><a href="#fn-1" class="footnote-sup">1</a></sup><sup><a href="#fn-4" class="footnote-sup">4</a></sup>；大众朗逸和速腾则凭借1.5T发动机和双离合变速箱的组合，在动力表现上更胜一筹<sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-11" class="footnote-sup">11</a></sup>；丰田卡罗拉则以极低的故障率和完善的L2级辅助驾驶系统著称<sup><a href="#fn-7" class="footnote-sup">7</a></sup><sup><a href="#fn-24" class="footnote-sup">24</a></sup>。国产车型中，吉利帝豪以6.29-14.98万的价格区间和丰富的配置提供了高性价比选择<sup><a href="#fn-6" class="footnote-sup">6</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>SUV市场则呈现出自主品牌崛起的态势。长安UNI-Z搭载1.5T发动机和湿式双离合变速箱，188马力的动力输出在同价位中表现突出<sup><a href="#fn-2" class="footnote-sup">2</a></sup>；奇瑞探索06以1.6T发动机和197马力的动力参数成为性能标杆<sup><a href="#fn-2" class="footnote-sup">2</a></sup>；起亚智跑作为唯一的合资品牌SUV，以13.98-15.78万的价格和2.0L自然吸气发动机提供了稳定可靠的选择<sup><a href="#fn-2" class="footnote-sup">2</a></sup>。值得注意的是，部分车型如北京越野BJ40虽然指导价较高，但终端优惠后15万左右可入手入门版，为有特殊需求的用户提供了更多选择<sup><a href="#fn-2" class="footnote-sup">2</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从动力系统来看，15万以内燃油车主要采用三种技术路线：自然吸气发动机+CVT变速箱（如轩逸、卡罗拉）、涡轮增压发动机+双离合变速箱（如速腾、UNI-Z）、涡轮增压发动机+CVT变速箱（如部分国产车型）。每种技术路线都有其优缺点，自然吸气+CVT组合平顺性好但动力响应一般；涡轮增压+双离合组合动力强劲但低速顿挫问题仍存在；涡轮增压+CVT则试图平衡两者，但技术成熟度相对较低<sup><a href="#fn-10" class="footnote-sup">10</a></sup><sup><a href="#fn-11" class="footnote-sup">11</a></sup><sup><a href="#fn-12" class="footnote-sup">12</a></sup>。</p>
+</div>
+<div class="style-summary">针对新一线城市用户的通勤需求，我们建议重点关注燃油经济性和可靠性的平衡。每日30公里以内的通勤距离对动力性能要求不高，但频繁启停对变速箱的平顺性和耐久性提出了挑战。因此，在车型选择上，轿车类中的轩逸、卡罗拉和SUV类中的UNI-Z、探索06值得优先考虑。</div>
+
+            <div class="chart-wrapper relative h-[280px] sm:h-[320px] md:h-[380px]">
+                <canvas id="chart-b_000014"></canvas>
+                <script>
+                    (function() {
+                        const ctx = document.getElementById('chart-b_000014');
+                        Chart.defaults.font.family = '"Inter", "Noto Sans SC", sans-serif';
+                        Chart.defaults.color = '#64748b';
+                        
+                        new Chart(ctx, {
+                            type: "pie",
+                            data: {"labels": ["\u7d27\u51d1\u578b\u8f7f\u8f66", "\u7d27\u51d1\u578bSUV"], "datasets": [{"data": [60, 40], "backgroundColor": ["#FF6384", "#36A2EB"], "borderColor": "#ffffff", "borderWidth": 2}]},
+                            options: { 
+                                responsive: true, 
+                                maintainAspectRatio: false,
+                                animation: {
+                                    duration: 1000,
+                                    easing: 'easeOutQuart'
+                                },
+                                plugins: {
+                                    title: {
+                                        display: !!"15\u4e07\u4ee5\u5185\u71c3\u6cb9\u7d27\u51d1\u578b\u8f66\u5e02\u573a\u4efd\u989d\u5206\u5e03",
+                                        text: "15\u4e07\u4ee5\u5185\u71c3\u6cb9\u7d27\u51d1\u578b\u8f66\u5e02\u573a\u4efd\u989d\u5206\u5e03",
+                                        font: { size: 16, weight: '600', family: '"Inter", sans-serif' },
+                                        color: '#1e293b',
+                                        padding: { bottom: 20, top: 0 },
+                                        align: 'start'
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 16,
+                                            boxWidth: 8,
+                                            font: { family: '"Inter", sans-serif', size: 11 }
+                                        }
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                        titleColor: '#0f172a',
+                                        bodyColor: '#334155',
+                                        borderColor: '#e2e8f0',
+                                        borderWidth: 1,
+                                        padding: 10,
+                                        titleFont: { size: 13, weight: '600' },
+                                        bodyFont: { size: 12 },
+                                        cornerRadius: 6,
+                                        displayColors: true,
+                                        usePointStyle: true,
+                                        boxPadding: 4
+                                    }
+                                },
+                                scales: {}
+                            }
+                        });
+                    })();
+                </script>
+            </div>
+            
+</div>
+<div class="section-card" id="b_000015">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">燃油经济性对比</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>燃油经济性是日常通勤用户最关注的指标之一，直接影响长期使用成本。根据2026年最新测试数据，15万以内燃油紧凑型车的WLTC综合油耗主要集中在5.2-7.5L/100km区间，不同技术路线和车型类别存在明显差异<sup><a href="#fn-4" class="footnote-sup">4</a></sup><sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-7" class="footnote-sup">7</a></sup><sup><a href="#fn-8" class="footnote-sup">8</a></sup>。按当前92号汽油7.8元/升计算，年行驶1.5万公里的燃油成本差异可达3000元以上，这对注重经济性的家庭用户来说是一笔不小的开支。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：主流车型燃油经济性对比</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>车型</th>
+<th>发动机</th>
+<th>变速箱</th>
+<th>WLTC油耗(L/100km)</th>
+<th>年燃油成本(元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日产轩逸</td>
+<td>1.6L 122马力</td>
+<td>CVT</td>
+<td>5.2-6.1</td>
+<td>6084-7137</td>
+</tr>
+<tr>
+<td>丰田卡罗拉</td>
+<td>1.2T 116马力</td>
+<td>CVT</td>
+<td>6.09</td>
+<td>7125</td>
+</tr>
+<tr>
+<td>大众速腾</td>
+<td>1.5T 160马力</td>
+<td>7速湿式双离合</td>
+<td>5.77</td>
+<td>6752</td>
+</tr>
+<tr>
+<td>吉利帝豪</td>
+<td>1.5L 120马力</td>
+<td>CVT</td>
+<td>6.25</td>
+<td>7313</td>
+</tr>
+<tr>
+<td>卡罗拉锐放</td>
+<td>2.0L 171马力</td>
+<td>CVT</td>
+<td>6.42</td>
+<td>7512</td>
+</tr>
+<tr>
+<td>长安UNI-Z</td>
+<td>1.5T 188马力</td>
+<td>湿式双离合</td>
+<td>未公布(预计6.5-7.0)</td>
+<td>7605-8190</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从技术路线分析，自然吸气发动机+CVT变速箱的组合在燃油经济性上表现最佳。日产轩逸搭载的HR16发动机采用双C-VTC连续可变气门正时技术，配合Xtronic CVT无级变速箱，实现了5.2-6.1L/100km的优秀油耗<sup><a href="#fn-4" class="footnote-sup">4</a></sup><sup><a href="#fn-10" class="footnote-sup">10</a></sup>。丰田卡罗拉的1.2T发动机虽然排量小，但涡轮增压技术在中低速工况下油耗表现不如自然吸气发动机，WLTC油耗为6.09L/100km<sup><a href="#fn-7" class="footnote-sup">7</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>涡轮增压发动机+双离合变速箱的组合在动力输出和燃油经济性之间取得了较好平衡。大众速腾搭载的EA211 1.5T EVO2发动机采用米勒循环和可变截面涡轮技术，配合DQ381 7速湿式双离合变速箱，WLTC油耗降至5.77L/100km，在同级别涡轮增压车型中表现优异<sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-11" class="footnote-sup">11</a></sup>。长安UNI-Z的1.5T发动机虽然动力强劲(188马力)，但预计油耗会略高于速腾，约在6.5-7.0L/100km区间<sup><a href="#fn-2" class="footnote-sup">2</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>值得注意的是，SUV车型由于风阻系数和车重较大，整体油耗普遍高于轿车。卡罗拉锐放搭载2.0L自然吸气发动机，WLTC油耗达到6.42L/100km<sup><a href="#fn-8" class="footnote-sup">8</a></sup>；起亚智跑的2.0L版本油耗预计在7.0-7.5L/100km区间<sup><a href="#fn-2" class="footnote-sup">2</a></sup>。对于每日通勤距离较短的用户，SUV的油耗劣势可能不太明显；但若经常长途行驶，累计的燃油成本差异将十分可观。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从实际使用场景来看，城市拥堵路况对燃油经济性影响显著。CVT变速箱在频繁启停工况下能保持发动机在最佳转速区间，油耗表现相对稳定；双离合变速箱在低速蠕行时离合器频繁结合分离，可能导致油耗增加和过热问题<sup><a href="#fn-11" class="footnote-sup">11</a></sup><sup><a href="#fn-12" class="footnote-sup">12</a></sup>。因此，对于主要在城市通勤的用户，CVT车型可能是更经济的选择。</p>
+</div>
+
+            <div class="chart-wrapper relative h-[280px] sm:h-[320px] md:h-[380px]">
+                <canvas id="chart-b_000023"></canvas>
+                <script>
+                    (function() {
+                        const ctx = document.getElementById('chart-b_000023');
+                        Chart.defaults.font.family = '"Inter", "Noto Sans SC", sans-serif';
+                        Chart.defaults.color = '#64748b';
+                        
+                        new Chart(ctx, {
+                            type: "bar",
+                            data: {"labels": ["\u65e5\u4ea7\u8f69\u9038", "\u4e30\u7530\u5361\u7f57\u62c9", "\u5927\u4f17\u901f\u817e", "\u5409\u5229\u5e1d\u8c6a", "\u5361\u7f57\u62c9\u9510\u653e"], "datasets": [{"label": "\u5e74\u71c3\u6cb9\u6210\u672c(\u5143)", "data": [6084, 7125, 6752, 7313, 7512], "backgroundColor": "#FFCE56", "borderColor": ["rgba(59, 130, 246, 1.0)", "rgba(16, 185, 129, 1.0)", "rgba(245, 158, 11, 1.0)", "rgba(99, 102, 241, 1.0)", "rgba(236, 72, 153, 1.0)"], "borderWidth": 1, "borderRadius": 4}]},
+                            options: { 
+                                responsive: true, 
+                                maintainAspectRatio: false,
+                                maxBarThickness: 40,
+                                categoryPercentage: 0.7,
+                                barPercentage: 0.8,
+                                animation: {
+                                    duration: 1000,
+                                    easing: 'easeOutQuart'
+                                },
+                                plugins: {
+                                    title: {
+                                        display: !!"\u4e3b\u6d41\u8f66\u578b\u5e74\u71c3\u6cb9\u6210\u672c\u5bf9\u6bd4(\u63091.5\u4e07\u516c\u91cc/\u5e74\u8ba1\u7b97)",
+                                        text: "\u4e3b\u6d41\u8f66\u578b\u5e74\u71c3\u6cb9\u6210\u672c\u5bf9\u6bd4(\u63091.5\u4e07\u516c\u91cc/\u5e74\u8ba1\u7b97)",
+                                        font: { size: 16, weight: '600', family: '"Inter", sans-serif' },
+                                        color: '#1e293b',
+                                        padding: { bottom: 20, top: 0 },
+                                        align: 'start'
+                                    },
+                                    legend: {
+                                        display: false,
+                                        position: 'bottom',
+                                        labels: {
+                                            usePointStyle: true,
+                                            padding: 16,
+                                            boxWidth: 8,
+                                            font: { family: '"Inter", sans-serif', size: 11 }
+                                        }
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                        titleColor: '#0f172a',
+                                        bodyColor: '#334155',
+                                        borderColor: '#e2e8f0',
+                                        borderWidth: 1,
+                                        padding: 10,
+                                        titleFont: { size: 13, weight: '600' },
+                                        bodyFont: { size: 12 },
+                                        cornerRadius: 6,
+                                        displayColors: true,
+                                        usePointStyle: true,
+                                        boxPadding: 4
+                                    }
+                                },
+                                scales: {"x": {"grid": {"display": false}, "ticks": {"color": "#64748b"}}, "y": {"beginAtZero": true, "grace": "5%", "grid": {"color": "#f1f5f9", "borderDash": [4, 4]}, "ticks": {"color": "#64748b"}, "border": {"display": false}}}
+                            }
+                        });
+                    })();
+                </script>
+            </div>
+            
+<div class="style-summary">基于燃油经济性考虑，我们为不同使用场景的用户提供以下建议：纯城市通勤用户优先选择CVT变速箱的轿车，如轩逸、卡罗拉；经常跑高速的用户可考虑涡轮增压+双离合组合，如速腾；对空间有需求且不介意略高油耗的用户，可选择油耗表现相对较好的SUV，如UNI-Z。同时，良好的驾驶习惯(平稳加速、减少急刹车)也能有效降低实际油耗5-10%。</div>
+</div>
+<div class="section-card" id="b_000025">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">可靠性与保养成本评估</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>车辆可靠性和保养成本是长期使用中的关键考量因素，直接影响用户的拥有成本和用车体验。根据2026年最新行业报告和用户反馈数据，15万以内燃油紧凑型车的可靠性表现存在明显品牌差异，保养成本也相差悬殊<sup><a href="#fn-17" class="footnote-sup">17</a></sup><sup><a href="#fn-18" class="footnote-sup">18</a></sup><sup><a href="#fn-19" class="footnote-sup">19</a></sup><sup><a href="#fn-20" class="footnote-sup">20</a></sup><sup><a href="#fn-21" class="footnote-sup">21</a></sup>。对于注重经济性的新一线城市用户，选择一款故障率低、保养便宜的车型至关重要。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：主流车型6万公里保养成本对比</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>车型</th>
+<th>保养周期</th>
+<th>小保养费用(元)</th>
+<th>大保养费用(元)</th>
+<th>6万公里总费用(元)</th>
+<th>主要故障问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丰田卡罗拉</td>
+<td>10000公里/6个月</td>
+<td>227-520</td>
+<td>600-700</td>
+<td>1964-3408</td>
+<td>发动机异响(机脚垫老化)</td>
+</tr>
+<tr>
+<td>大众速腾</td>
+<td>10000-15000公里</td>
+<td>373-545</td>
+<td>790-1065</td>
+<td>3866-4516</td>
+<td>变速箱顿挫、电子系统故障</td>
+</tr>
+<tr>
+<td>日产轩逸</td>
+<td>5000公里</td>
+<td>276</td>
+<td>513</td>
+<td>4034-4386</td>
+<td>CVT变速箱阀体故障</td>
+</tr>
+<tr>
+<td>吉利帝豪</td>
+<td>5000公里/6个月</td>
+<td>304</td>
+<td>506</td>
+<td>6015-13800</td>
+<td>氧传感器故障、启动困难</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从品牌可靠性来看，丰田卡罗拉表现最为出色。根据第三方报告，卡罗拉在100辆车中可能只有1辆存在问题，发动机故障率仅0.5%，CVT变速箱平均使用寿命达25万公里左右<sup><a href="#fn-24" class="footnote-sup">24</a></sup><sup><a href="#fn-25" class="footnote-sup">25</a></sup>。车身防锈年限起码12年，采用高强度钢与先进工艺，零部件寿命长。在2022年中国汽车质量研究报告中，丰田在合资品牌中排名第一<sup><a href="#fn-25" class="footnote-sup">25</a></sup>。常见问题主要是发动机异响，多由机脚垫老化或松脱引起，寿命通常为3-5年或6-8万公里，维修成本相对较低<sup><a href="#fn-24" class="footnote-sup">24</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>大众速腾的可靠性处于同级别中等偏上水平。2026款搭载的7速湿式双离合变速箱(DQ381)相比早期干式双离合已有明显改善，换挡速度和传动效率表现优异，正常使用可达50万公里甚至100万公里<sup><a href="#fn-11" class="footnote-sup">11</a></sup><sup><a href="#fn-12" class="footnote-sup">12</a></sup>。但根据用户反馈，3年/10万公里内仍可能出现变速箱顿挫(占比32%)、电子系统故障(占比28%)和异响问题(占比21%)<sup><a href="#fn-23" class="footnote-sup">23</a></sup>。每6万公里需更换专用变速箱油，维护成本较高。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>日产轩逸的CVT变速箱问题相对较多。虽然理论上结构简单、摩擦部件少，但实际使用中存在阀体故障、滑阀箱故障等典型问题，部分车型出现P0846故障码<sup><a href="#fn-22" class="footnote-sup">22</a></sup>。冷保护严重(低温启动时车速受限)、异响顿挫问题也较为常见<sup><a href="#fn-10" class="footnote-sup">10</a></sup><sup><a href="#fn-14" class="footnote-sup">14</a></sup>。正常使用和保养情况下耐用性较好，可使用40万公里，但需要注意定期更换变速箱油和避免激烈驾驶<sup><a href="#fn-10" class="footnote-sup">10</a></sup><sup><a href="#fn-13" class="footnote-sup">13</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>吉利帝豪作为国产代表，可靠性表现不如合资品牌。常见故障包括启动困难(与节气门或发动机积碳有关)、氧传感器故障、喷油器泄漏等<sup><a href="#fn-26" class="footnote-sup">26</a></sup>。6万公里基础保养总费用6015元，全面保养总费用高达13800元，是四款对比车型中最高的<sup><a href="#fn-20" class="footnote-sup">20</a></sup><sup><a href="#fn-21" class="footnote-sup">21</a></sup>。不过，帝豪凭借较低的售价和丰富的配置，在性价比方面仍有一定优势。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从保养成本分析，丰田卡罗拉优势明显。10000公里的保养周期和较低的配件价格使其6万公里总保养成本仅为1964-3408元，远低于其他车型<sup><a href="#fn-19" class="footnote-sup">19</a></sup>。大众速腾和日产轩逸的保养成本相近，6万公里约4000-4500元<sup><a href="#fn-17" class="footnote-sup">17</a></sup><sup><a href="#fn-18" class="footnote-sup">18</a></sup>。吉利帝豪虽然单次保养费用不高，但5000公里的短保养周期导致总成本大幅增加<sup><a href="#fn-20" class="footnote-sup">20</a></sup>。</p>
+</div>
+<div class="style-summary">针对新一线城市用户的使用特点，我们建议：注重长期可靠性和低保养成本的用户优先选择丰田卡罗拉；对动力性能有一定要求且能接受中等保养成本的用户可考虑大众速腾；预算有限且主要城市通勤的用户可选择日产轩逸，但需注意CVT变速箱的保养；追求配置和性价比的用户可考虑吉利帝豪，但需预留较高的保养预算。</div>
+</div>
+<div class="section-card" id="b_000035">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">配置与安全性能分析</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>在15万预算范围内，车辆配置和安全性能的差异化竞争日益激烈。2026年主流紧凑型车在基础配置上已相当丰富，但在高级辅助驾驶系统和安全防护方面仍存在明显差异<sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-7" class="footnote-sup">7</a></sup><sup><a href="#fn-15" class="footnote-sup">15</a></sup><sup><a href="#fn-16" class="footnote-sup">16</a></sup>。对于经常面临复杂路况和偶尔长途驾驶的新一线城市用户，合理的配置选择能显著提升行车安全性和驾驶体验。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：主流车型安全配置对比</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>车型</th>
+<th>安全气囊数量</th>
+<th>L2级辅助驾驶</th>
+<th>主动刹车</th>
+<th>车道保持</th>
+<th>自适应巡航</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丰田卡罗拉</td>
+<td>9(含膝部气囊)</td>
+<td>标配Toyota Pilot</td>
+<td>标配</td>
+<td>标配</td>
+<td>标配</td>
+</tr>
+<tr>
+<td>大众速腾</td>
+<td>6(侧气帘)</td>
+<td>高配车型配备</td>
+<td>高配</td>
+<td>高配</td>
+<td>高配</td>
+</tr>
+<tr>
+<td>日产轩逸</td>
+<td>6(侧气帘)</td>
+<td>无</td>
+<td>无</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>吉利帝豪</td>
+<td>6(侧气帘)</td>
+<td>无</td>
+<td>标配</td>
+<td>标配</td>
+<td>定速巡航</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从安全气囊配置来看，丰田卡罗拉表现最为出色，全系标配9个安全气囊，包括同级罕见的前排膝部气囊，在正面碰撞中能有效保护驾驶员下肢<sup><a href="#fn-7" class="footnote-sup">7</a></sup>。大众速腾、日产轩逸和吉利帝豪均配备6个安全气囊(主副驾、前排侧气囊、侧安全气帘)，能满足基本安全需求<sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-15" class="footnote-sup">15</a></sup><sup><a href="#fn-16" class="footnote-sup">16</a></sup>。值得注意的是，安全气囊数量并非越多越好，合理的布局和标定同样重要，但膝部气囊的缺失确实是一个遗憾。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>在高级辅助驾驶系统方面，丰田卡罗拉再次领先。全系标配Toyota Pilot驾驶辅助系统，包含主动刹车、车道保持辅助、车道居中保持、全速自适应巡航等L2级功能<sup><a href="#fn-7" class="footnote-sup">7</a></sup>。这套系统在长途驾驶中能有效减轻驾驶员疲劳，在拥堵路况下也能提供一定的安全防护。大众速腾仅在300TSI DSG时尚型等高配车型上配备L2级辅助驾驶，包括车道偏离预警、主动刹车、全速自适应巡航等功能<sup><a href="#fn-16" class="footnote-sup">16</a></sup>。日产轩逸经典款和吉利帝豪则完全不具备L2级辅助驾驶能力，仅吉利帝豪配备了主动刹车和车道保持辅助等基础功能<sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-15" class="footnote-sup">15</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从实际使用价值评估，L2级辅助驾驶系统对新一线城市用户具有重要意义。每日通勤中，全速自适应巡航能显著减轻拥堵路段的驾驶负担；长途行驶时，车道保持和居中功能能大幅降低事故风险。数据显示，配备L2级辅助驾驶的车辆能减少约30%的追尾事故和20%的偏离车道事故<sup><a href="#fn-7" class="footnote-sup">7</a></sup>。因此，在预算允许的情况下，优先选择配备完整L2系统的车型是明智之举。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>在被动安全方面，各车型均采用高强度车身结构，但具体用料和工艺存在差异。丰田卡罗拉和大众速腾作为全球车型，在碰撞测试中均获得五星评价；日产轩逸和吉利帝豪在国内测试中也表现良好。值得注意的是，车身防锈处理对长期使用很重要，丰田卡罗拉宣称防锈年限至少12年<sup><a href="#fn-25" class="footnote-sup">25</a></sup>，这对沿海或潮湿地区的用户尤为重要。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>其他实用配置方面，各车型差异不大。倒车影像、雷达、中控大屏等已成为标配；差异主要体现在天窗、自动空调、座椅材质等舒适性配置上。日产轩逸2026款经典版甚至取消了中控大屏，标配天窗，这种配置策略值得商榷<sup><a href="#fn-28" class="footnote-sup">28</a></sup>。对于注重实用性的用户，倒车影像和雷达比天窗更为重要；而自动空调和真皮座椅则能显著提升日常使用舒适度。</p>
+</div>
+<div class="style-summary">基于安全配置分析，我们为不同需求的用户提供以下建议：安全至上的用户优先选择丰田卡罗拉，其完整的安全气囊和L2辅助驾驶系统能提供全方位保护；预算有限但注重基础安全的用户可选择大众速腾中高配车型；主要城市通勤且对高级辅助驾驶需求不高的用户可考虑日产轩逸或吉利帝豪，但需注意其安全配置的局限性。</div>
+</div>
+<div class="section-card" id="b_000045">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">价格与优惠策略</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>15万预算的购车决策不仅涉及车辆本身价格，还需综合考虑终端优惠、购置税、保险和上牌等各项费用。2026年汽车市场竞争激烈，各品牌纷纷推出大幅优惠，但实际落地价计算复杂，需要用户仔细甄别<sup><a href="#fn-28" class="footnote-sup">28</a></sup><sup><a href="#fn-29" class="footnote-sup">29</a></sup><sup><a href="#fn-30" class="footnote-sup">30</a></sup><sup><a href="#fn-31" class="footnote-sup">31</a></sup><sup><a href="#fn-32" class="footnote-sup">32</a></sup>。对于精打细算的新一线城市用户，了解价格构成和优惠策略能节省数千至上万元购车成本。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：主流车型价格与优惠对比</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>车型</th>
+<th>官方指导价(万元)</th>
+<th>终端优惠(万元)</th>
+<th>优惠后起售价(万元)</th>
+<th>预估落地价(万元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日产轩逸</td>
+<td>8.09-11.86</td>
+<td>1.8-3.88</td>
+<td>5.49-9.98</td>
+<td>6.5-11.5</td>
+</tr>
+<tr>
+<td>丰田卡罗拉</td>
+<td>11.88-14.68</td>
+<td>3.0</td>
+<td>8.88-11.68</td>
+<td>10.0-13.0</td>
+</tr>
+<tr>
+<td>大众速腾</td>
+<td>未明确</td>
+<td>高达5.1</td>
+<td>预计10-15</td>
+<td>11.5-16.5</td>
+</tr>
+<tr>
+<td>吉利帝豪</td>
+<td>6.99-12.98</td>
+<td>1.5-2.4</td>
+<td>5.49-10.58</td>
+<td>6.5-12.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>从终端优惠幅度来看，大众速腾优惠力度最大，部分车型优惠高达5.1万元<sup><a href="#fn-30" class="footnote-sup">30</a></sup>；丰田卡罗拉官方直降3万元左右，1.8L双擎版本不到10万<sup><a href="#fn-29" class="footnote-sup">29</a></sup>；日产轩逸经典款优惠约1.8万元，部分地区高达3.88万元<sup><a href="#fn-28" class="footnote-sup">28</a></sup>；吉利帝豪优惠1.5-2.4万元，最低起售价仅5.49万元<sup><a href="#fn-31" class="footnote-sup">31</a></sup>。值得注意的是，优惠幅度大的车型往往是即将换代或销量不佳的车型，用户需权衡价格与产品新鲜度。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>落地价计算是购车决策的关键环节。以10万元裸车价为例，落地价通常包含：购置税(裸车价÷1.13×10%≈8850元)、交强险(950元)、商业险(三者险200万约2500元+车损险约550元)、上牌费(500-1500元)，总计约1.3-1.5万元<sup><a href="#fn-32" class="footnote-sup">32</a></sup>。因此，10万元裸车价的车型实际落地价约11.3-11.5万元。用户在预算15万时，应考虑选择裸车价13-13.5万元的车型，避免因低估落地成本而超出预算。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>购车时机选择也影响最终成交价。根据历史数据，每年3-4月和9-10月是传统销售淡季，优惠力度较大；年末冲量时(11-12月)也有不错优惠。新款车型上市前，老款通常会清库存促销。2026年春节后(1月底至2月)可能是较好的购车时机，部分车型如卡罗拉限时享受4000元购置税补贴<sup><a href="#fn-29" class="footnote-sup">29</a></sup>。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>金融方案方面，各品牌提供低首付、低利率甚至免息贷款。但用户需注意，所谓&quot;免息&quot;往往通过提高车价或强制店内保险实现。建议用户优先选择现金购车，或比较不同金融机构的贷款方案，避免被表面优惠迷惑。以贷款10万元分3年为例，4%年利率的总利息约6000元，若车价因此提高8000元，则并不划算。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p>保险费用是长期使用成本的重要组成部分。10万元左右车型第一年全险约4000-5000元，后续无出险记录可逐年下降。用户可比较不同保险公司的报价，选择性价比高的方案；也可适当调整险种，如老旧车辆可不投保车损险。但三者险建议保额不低于200万，以应对日益提高的赔偿标准。</p>
+</div>
+<div class="style-summary">基于价格策略分析，我们为不同预算用户提供以下建议：预算严格控制在10万以内的用户可考虑日产轩逸经典款或吉利帝豪，优惠后裸车价约5.5-6万，落地价6.5-7万；预算10-13万的用户可选择丰田卡罗拉或大众速腾入门版，落地价约11-13万；预算接近15万的用户可考虑各车型高配版本，获得更丰富的配置和更好的驾驶体验。无论选择哪款车型，都建议货比三家，争取最优价格和附加服务。</div>
+</div>
+<div class="section-card" id="b_000055">
+
+                    <h2 class="section-heading">
+                        <span class="section-heading-icon">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"></path></svg>
+                        </span>
+                        <span class="section-heading-text">综合购买建议</span>
+                    </h2>
+                    
+<div class="text-slate-600 leading-relaxed prose-p"><p>基于前述多维度分析，我们针对新一线城市用户的特定需求，提供以下分层级的购买建议。这些建议综合考虑了燃油经济性、可靠性、安全配置和价格因素，旨在帮助不同需求的用户做出最适合自身情况的购车决策。</p>
+</div>
+<div class="text-slate-600 leading-relaxed prose-p"><p><strong>表：按需求分类的车型推荐</strong></p>
+</div>
+<div class="clean-table-container"><table>
+<thead>
+<tr>
+<th>用户类型</th>
+<th>首选推荐</th>
+<th>次选推荐</th>
+<th>关键优势</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经济实用型</td>
+<td>丰田卡罗拉</td>
+<td>日产轩逸</td>
+<td>超低故障率、低保养成本</td>
+<td>卡罗拉动力一般，轩逸CVT需保养</td>
+</tr>
+<tr>
+<td>性价比型</td>
+<td>吉利帝豪</td>
+<td>大众速腾</td>
+<td>配置丰富、价格优惠</td>
+<td>帝豪保养成本高，速腾双离合需注意</td>
+</tr>
+<tr>
+<td>安全优先型</td>
+<td>丰田卡罗拉</td>
+<td>大众速腾</td>
+<td>完整L2辅助驾驶、多气囊</td>
+<td>需选择高配版本</td>
+</tr>
+<tr>
+<td>动力性能型</td>
+<td>大众速腾</td>
+<td>长安UNI-Z</td>
+<td>涡轮增压动力、换挡迅速</td>
+<td>油耗相对较高</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        <div class="layout-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            
+            <div class="layout-card">
+                <div class="text-slate-600 leading-relaxed prose-p"><p>对于<strong>经济实用型用户</strong>，丰田卡罗拉是最佳选择。其WLTC油耗6.09L/100km，年燃油成本约7125元；6万公里保养成本仅1964-3408元，是对比车型中最低的；故障率极低，发动机故障率仅0.5%<sup><a href="#fn-7" class="footnote-sup">7</a></sup><sup><a href="#fn-19" class="footnote-sup">19</a></sup><sup><a href="#fn-24" class="footnote-sup">24</a></sup>。虽然动力表现一般(1.2T 116马力)，但完全满足日常通勤需求。终端优惠后起售价约8.88万，落地价约10万，性价比突出<sup><a href="#fn-29" class="footnote-sup">29</a></sup>。次选日产轩逸，油耗更低(5.2-6.1L/100km)，但CVT变速箱可靠性稍逊，保养成本也略高<sup><a href="#fn-4" class="footnote-sup">4</a></sup><sup><a href="#fn-18" class="footnote-sup">18</a></sup><sup><a href="#fn-22" class="footnote-sup">22</a></sup>。</p>
+</div>
+            </div>
+            
+            <div class="layout-card">
+                <div class="text-slate-600 leading-relaxed prose-p"><p>对于<strong>性价比型用户</strong>，吉利帝豪值得考虑。2026款第5代1.5L CVT豪华型官方指导价7.49万，终端优惠后仅5.49万起，落地价约6.5万<sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-31" class="footnote-sup">31</a></sup>。配备主动刹车、车道保持等安全功能，配置远超同价位合资车。但需注意其6万公里保养成本高达6015-13800元，且故障率相对较高<sup><a href="#fn-20" class="footnote-sup">20</a></sup><sup><a href="#fn-21" class="footnote-sup">21</a></sup><sup><a href="#fn-26" class="footnote-sup">26</a></sup>。次选大众速腾，优惠后起售价约10万，动力强劲(1.5T 160马力)，但双离合变速箱在拥堵路况可能顿挫<sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-11" class="footnote-sup">11</a></sup><sup><a href="#fn-23" class="footnote-sup">23</a></sup>。</p>
+</div>
+            </div>
+            
+            <div class="layout-card">
+                <div class="text-slate-600 leading-relaxed prose-p"><p>对于<strong>安全优先型用户</strong>，丰田卡罗拉仍是首选。全系标配9安全气囊和完整L2辅助驾驶系统，包括主动刹车、车道保持、全速自适应巡航等<sup><a href="#fn-7" class="footnote-sup">7</a></sup>。大众速腾高配车型也配备类似系统，但价格更高<sup><a href="#fn-16" class="footnote-sup">16</a></sup>。这类用户应优先考虑安全配置而非价格，选择高配版本。值得注意的是，日产轩逸经典款和吉利帝豪缺乏L2级辅助驾驶，不适合安全至上的用户<sup><a href="#fn-6" class="footnote-sup">6</a></sup><sup><a href="#fn-15" class="footnote-sup">15</a></sup>。</p>
+</div>
+            </div>
+            
+            <div class="layout-card">
+                <div class="text-slate-600 leading-relaxed prose-p"><p>对于<strong>动力性能型用户</strong>，大众速腾表现最佳。EA211 1.5T EVO2发动机最大功率160马力，峰值扭矩250N·m，配合7速湿式双离合变速箱，换挡速度不到0.2秒<sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-11" class="footnote-sup">11</a></sup>。长安UNI-Z的1.5T发动机输出188马力，动力更为强劲，但作为SUV油耗较高<sup><a href="#fn-2" class="footnote-sup">2</a></sup>。这类用户需接受较高的油耗(速腾WLTC 5.77L/100km)和保养成本(6万公里约4000元)<sup><a href="#fn-5" class="footnote-sup">5</a></sup><sup><a href="#fn-17" class="footnote-sup">17</a></sup>。</p>
+</div>
+            </div>
+            
+        </div>
+        
+<div class="text-slate-600 leading-relaxed prose-p"><p>针对<strong>特定使用场景</strong>，我们提供以下专项建议：纯城市通勤用户优先选择CVT车型，如轩逸、卡罗拉，平顺性好且低速油耗低；经常跑高速的用户可选择涡轮增压车型，如速腾，高速动力储备更足；家庭用户可考虑SUV车型，如UNI-Z，空间更大但油耗略高；对品牌有要求的用户可优先选择合资品牌，如丰田、大众，保值率更高。</p>
+</div>
+<div class="style-summary">最后，我们提醒用户在购车时注意以下几点：务必试驾，亲身体验车辆动力和舒适性；检查库存车时间，避免购买存放过久的车辆；仔细阅读合同条款，明确优惠内容和附加条件；比较不同保险方案，避免过度投保；了解本地售后服务网络，确保后期保养便利。通过理性分析和谨慎选择，用户一定能找到最适合自己需求的15万以内燃油代步车。</div>
+</div><div class="section-card references-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <svg class="w-8 h-8 text-indigo-600 opacity-95" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-slate-900">参考文献</h2>
+                </div>
+                <div class="references-grid">
+                <div id="fn-1" class="reference-item">
+                    <div class="reference-number">1</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://car.autohome.com.cn/price/list-10_15-3-0-0-0-0-0-0-0-0-0-0-0-0-0-1.html" target="_blank" class="reference-link">10-15万紧凑型车车型大全</a></div>
+                        <div class="reference-source">汽车之家</div>
+                    </div>
+                </div>
+                <div id="fn-2" class="reference-item">
+                    <div class="reference-number">2</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://car.autohome.com.cn/price/list-10_15-17-0-0-0-0-0-0-0-0-0-0-0-0-0-5.html" target="_blank" class="reference-link">10-15万紧凑型SUV越野车车型大全</a></div>
+                        <div class="reference-source">汽车之家</div>
+                    </div>
+                </div>
+                <div id="fn-3" class="reference-item">
+                    <div class="reference-number">3</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5526966ee6a13252" target="_blank" class="reference-link">2026年会被爆卖的5款SUV</a></div>
+                        <div class="reference-source">腾讯网</div>
+                    </div>
+                </div>
+                <div id="fn-4" class="reference-item">
+                    <div class="reference-number">4</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.dongchedi.com/auto/params-carIds-x-1145" target="_blank" class="reference-link">日产轩逸 2026款经典 1.6L CVT舒畅版参数配置</a></div>
+                        <div class="reference-source">懂车帝</div>
+                    </div>
+                </div>
+                <div id="fn-5" class="reference-item">
+                    <div class="reference-number">5</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://m.dongchedi.com/article/7485279472334258727" target="_blank" class="reference-link">2026款大众速腾实车曝光!轴距超2.7米 搭载1.5T动力</a></div>
+                        <div class="reference-source">懂车帝</div>
+                    </div>
+                </div>
+                <div id="fn-6" class="reference-item">
+                    <div class="reference-number">6</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.dongchedi.com/auto/params-carIds-x-733" target="_blank" class="reference-link">吉利汽车帝豪 2026款第5代1.5L CVT豪华型参数配置</a></div>
+                        <div class="reference-source">懂车帝</div>
+                    </div>
+                </div>
+                <div id="fn-7" class="reference-item">
+                    <div class="reference-number">7</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.dongchedi.com/auto/params-carIds-x-542" target="_blank" class="reference-link">丰田卡罗拉 2026款1.2T S-CVT先锋版参数配置</a></div>
+                        <div class="reference-source">懂车帝</div>
+                    </div>
+                </div>
+                <div id="fn-8" class="reference-item">
+                    <div class="reference-number">8</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.dongchedi.com/auto/params-carIds-x-5382" target="_blank" class="reference-link">丰田卡罗拉锐放 2026款2.0L CVT 先锋版参数配置</a></div>
+                        <div class="reference-source">懂车帝</div>
+                    </div>
+                </div>
+                <div id="fn-9" class="reference-item">
+                    <div class="reference-number">9</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.quweiguan.com/xiuxian/4234193.html" target="_blank" class="reference-link">丰田RAV4使用了什么发动机</a></div>
+                        <div class="reference-source">趣味馆</div>
+                    </div>
+                </div>
+                <div id="fn-10" class="reference-item">
+                    <div class="reference-number">10</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/wd/4246070.html" target="_blank" class="reference-link">轩逸的 CVT 变速箱耐用吗</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-11" class="reference-item">
+                    <div class="reference-number">11</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/wd/4491028.html" target="_blank" class="reference-link">大众速腾七档双离合性能如何</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-12" class="reference-item">
+                    <div class="reference-number">12</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/jxwd/4696/46968136.html" target="_blank" class="reference-link">速腾双离合变速箱有什么问题</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-13" class="reference-item">
+                    <div class="reference-number">13</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/jxwd/3293/32935236.html" target="_blank" class="reference-link">轩逸cvt变速箱耐用吗</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-14" class="reference-item">
+                    <div class="reference-number">14</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.toutiao.com/article/7464871901714809379/" target="_blank" class="reference-link">日产的CVT变速箱并非像网上说的那么差 确实有一些被人诟病的问题</a></div>
+                        <div class="reference-source">今日头条</div>
+                    </div>
+                </div>
+                <div id="fn-15" class="reference-item">
+                    <div class="reference-number">15</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="http://price.pcauto.com.cn/pk/sid-3996-22501.html" target="_blank" class="reference-link">轩逸 2026款1.6L CVT省心版综合参配_价格行情空间动力配置详细信息</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-16" class="reference-item">
+                    <div class="reference-number">16</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://data.auto.sina.com.cn/car_comment/410" target="_blank" class="reference-link">速腾_新款速腾_一汽-大众速腾报价及图片_配置</a></div>
+                        <div class="reference-source">新浪汽车</div>
+                    </div>
+                </div>
+                <div id="fn-17" class="reference-item">
+                    <div class="reference-number">17</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/jxwd/4032/40322335.html" target="_blank" class="reference-link">速腾保养周期和费用大概是多少?</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-18" class="reference-item">
+                    <div class="reference-number">18</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.autohome.com.cn/448/0/43/Section.html" target="_blank" class="reference-link">轩逸保养费用_轩逸保养价格</a></div>
+                        <div class="reference-source">汽车之家</div>
+                    </div>
+                </div>
+                <div id="fn-19" class="reference-item">
+                    <div class="reference-number">19</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/jxwd/3857/38572944.html" target="_blank" class="reference-link">卡罗拉维修保养费用 卡罗拉保养收费标准</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-20" class="reference-item">
+                    <div class="reference-number">20</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/ask/1751418.html?ad=26613" target="_blank" class="reference-link">吉利帝豪汽车的维修保养成本高吗</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-21" class="reference-item">
+                    <div class="reference-number">21</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="http://www.pcauto.com.cn/jxwd/4667/46670610.html" target="_blank" class="reference-link">伊兰特和卡罗拉的维修成本哪个更低</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-22" class="reference-item">
+                    <div class="reference-number">22</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="http://www.12365auto.com/series/c-687-27-606.shtml" target="_blank" class="reference-link">轩逸 - 投诉</a></div>
+                        <div class="reference-source">车质网</div>
+                    </div>
+                </div>
+                <div id="fn-23" class="reference-item">
+                    <div class="reference-number">23</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.toutiao.com/article/7592109322008543798/" target="_blank" class="reference-link">开3万公里速腾实话实说:5个通病忍不了,3个是车主自找的</a></div>
+                        <div class="reference-source">今日头条</div>
+                    </div>
+                </div>
+                <div id="fn-24" class="reference-item">
+                    <div class="reference-number">24</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/ask/1340786.html" target="_blank" class="reference-link">一汽卡罗拉汽车的故障率高不高</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-25" class="reference-item">
+                    <div class="reference-number">25</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/jxwd/4678/46780029.html" target="_blank" class="reference-link">卡罗拉的质量稳定性可靠吗</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-26" class="reference-item">
+                    <div class="reference-number">26</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.quweiguan.com/zhishichaxun/549125.html" target="_blank" class="reference-link">帝豪启动不了,所有故障都出现了</a></div>
+                        <div class="reference-source">趣味馆</div>
+                    </div>
+                </div>
+                <div id="fn-27" class="reference-item">
+                    <div class="reference-number">27</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.pcauto.com.cn/ask/1622974.html" target="_blank" class="reference-link">5到10万汽车哪些品牌比较可靠?</a></div>
+                        <div class="reference-source">太平洋汽车</div>
+                    </div>
+                </div>
+                <div id="fn-28" class="reference-item">
+                    <div class="reference-number">28</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_7996944e8b815152" target="_blank" class="reference-link">2026款轩逸经典上市,取消中控大屏,标配天窗,8.09万起</a></div>
+                        <div class="reference-source">腾讯网</div>
+                    </div>
+                </div>
+                <div id="fn-29" class="reference-item">
+                    <div class="reference-number">29</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_05569478cee20752" target="_blank" class="reference-link">9.9万起!丰田卡罗拉官方直降三万左右,1.8L双擎不到10万!</a></div>
+                        <div class="reference-source">腾讯网</div>
+                    </div>
+                </div>
+                <div id="fn-30" class="reference-item">
+                    <div class="reference-number">30</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://www.autohome.com.cn/zhuzhou/cheshi/" target="_blank" class="reference-link">速腾让利促销中 限时优惠高达5.1万</a></div>
+                        <div class="reference-source">汽车之家</div>
+                    </div>
+                </div>
+                <div id="fn-31" class="reference-item">
+                    <div class="reference-number">31</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://news.yiche.com/hangqing/5736271.html" target="_blank" class="reference-link">深圳吉利汽车帝豪降价来袭,最低仅售5.49万!优惠不等人</a></div>
+                        <div class="reference-source">易车</div>
+                    </div>
+                </div>
+                <div id="fn-32" class="reference-item">
+                    <div class="reference-number">32</div>
+                    <div class="reference-content">
+                        <div class="reference-title"><a href="https://k.sina.com.cn/article_7880068201_1d5b04c6901901p840.html" target="_blank" class="reference-link">裸车价VS落地价,10万购车多掏2万,别忽视这5笔费用</a></div>
+                        <div class="reference-source">新浪新闻</div>
+                    </div>
+                </div></div></div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="back-to-top-btn fixed bottom-10 right-10 bg-gradient-to-br from-white to-indigo-50 backdrop-blur-xl border border-indigo-200/55 p-4 rounded-2xl shadow-xl shadow-indigo-900/10 text-indigo-700/70 hover:text-indigo-700 hover:border-indigo-300/70 hover:scale-105 hover:-translate-y-1 transition-all duration-300 z-40 group">
+        <svg class="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[style*="opacity: 0"]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ========== Mobile Scroll Stability ==========
+        // 拦截导航链接点击，使用程序化滚动避免触发浏览器地址栏收起
+        (function() {
+            // 获取CSS变量中的nav-height
+            const getNavHeight = () => {
+                const root = document.documentElement;
+                const navHeight = getComputedStyle(root).getPropertyValue('--nav-height').trim();
+                return parseInt(navHeight) || 72;
+            };
+
+            // 自定义平滑滚动函数，使用小步进减少地址栏触发
+            const smoothScrollTo = (targetY, duration = 400) => {
+                const startY = window.scrollY;
+                const distance = targetY - startY;
+                const startTime = performance.now();
+
+                const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+                const animate = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easedProgress = easeOutCubic(progress);
+                    
+                    window.scrollTo(0, startY + distance * easedProgress);
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+
+                requestAnimationFrame(animate);
+            };
+
+            // 为所有导航链接添加点击处理
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a[href^="#"]');
+                if (!link) return;
+
+                const targetId = link.getAttribute('href').slice(1);
+                if (!targetId) return;
+
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+
+                // 阻止默认的锚点跳转行为
+                e.preventDefault();
+
+                // 计算目标位置，考虑固定导航栏的高度
+                const navHeight = getNavHeight();
+                const targetRect = targetElement.getBoundingClientRect();
+                const targetY = window.scrollY + targetRect.top - navHeight - 24;
+
+                // 使用自定义平滑滚动
+                smoothScrollTo(Math.max(0, targetY), 500);
+
+                // 更新URL hash（不触发跳转）
+                history.pushState(null, '', '#' + targetId);
+            });
+
+            // 处理页面加载时的hash跳转
+            if (window.location.hash) {
+                // 延迟执行，等待页面渲染完成
+                setTimeout(() => {
+                    const targetId = window.location.hash.slice(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        const navHeight = getNavHeight();
+                        const targetRect = targetElement.getBoundingClientRect();
+                        const targetY = window.scrollY + targetRect.top - navHeight - 24;
+                        smoothScrollTo(Math.max(0, targetY), 300);
+                    }
+                }, 100);
+            }
+        })();
+    </script>
+</body>
+</html>
